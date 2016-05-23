@@ -1,0 +1,14 @@
+<h1>Dernières tendances</h1>
+<!-- Three columns of text below the carousel -->
+      <div class="row">
+      {{#each articles}}
+        <div class="col-md-4">
+          <img class="img-circle" src="{{image}}" alt="{{prix}}" width="140" height="140">
+          <h2>{{title}}</h2>
+          <p>{{description}}</p>
+          <p><a class="btn btn-default" href="/articles/{{title}}" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-md-4 -->
+
+        
+       {{/each}} 
+      </div><!-- /.row -->

@@ -1,0 +1,21 @@
+<div class="container">
+{{#each article}}
+<div class="col-md-7 col-md-offset-2">
+<div>
+<figure>
+<img src="{{image}}" alt="{{title}}" />
+<figcaption style="font-weight:bold;width:60%;">{{description}}</figcaption>
+</figure>
+</div>
+<div>Prix: {{prix}}</div>
+{{quantite}}
+</div>
+<div class="col-md-3">
+<form method="post" action="cart">
+<input type="hidden" value="{{_id}}" name="id"/>
+<button class="btn btn-primary">Ajouter au panier</a>
+</form>
+</div>
+{{/each}}
+
+</div>

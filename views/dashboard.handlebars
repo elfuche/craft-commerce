@@ -1,0 +1,72 @@
+<div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+             {{#if user}}
+              <li role="presentation"><a href="/">Page d'acceuil</a></li>
+              <li role="presentation"><a href="/users/logout">Se déconnecter</a></li>
+            {{/if}}
+          </ul>
+        </nav>
+        <h3 class="text-muted"><strong>Surf Shopping</strong></h3>
+      </div>
+<div class="container">
+<div class="row">
+<div class="col-md-3 col-offset-md-1">
+<h3>Bienvenue {{user.username}}</h3>
+<h3>Montant à payer : {{total}}</h3>
+</div>
+
+<div class="col-offset-md-1 col-md-7" style="border-left: 1px solid blue;">
+<h3>Reservations:</h3>
+<div class="row">
+<table class="table">
+<thead>
+<th>Référence</th>
+<th>Date Début</th>
+<th>Daté Fin</th>
+<th>Nbr de jours</th>
+<th>Tarif</th>
+<th>Montant</th>
+</thead>
+<tbody>
+<tr>
+<td>{{resa.idArticle}}</td>
+<td>{{resa.date_deb}}</td>
+<td>{{resa.date_fin}}</td>
+<td>{{resa.arr}}</td>
+<td>{{resa.tarif}}</td>
+<td>{{resa.tot}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div>
+<table class="table">
+<thead>
+<th>Nom</th>
+<th>Prix</th>
+<th>Quantité</th>
+<th>&nbsp</th>
+</thead>
+<tbody>
+{{#each cart}}
+<tr>
+<td>{{name}}</td>
+<td>{{price}}</td>
+<td><a href="/plus/{{name}}" style="display:none;" id="op"><span class="glyphicon glyphicon-plus"></span></a>&nbsp{{qty}}&nbsp
+&nbsp<a href="/moins/{{name}}" style="display:none;" id="op"><span class="glyphicon glyphicon-minus"></span></a>
+</td>
+</tr>
+{{/each}}
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>Total:{{total}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</div>

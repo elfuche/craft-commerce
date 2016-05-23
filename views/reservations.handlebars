@@ -1,0 +1,15 @@
+<h1>Réservez votre prestation</h1>
+<!-- Three columns of text below the carousel -->
+      <div class="row">
+      {{#each res}}
+        <div class="col-md-4">
+          <img class="img-circle" src="{{image}}" alt="{{prix}}" width="140" height="140">
+          <h2>{{nom}}</h2>
+          <p>{{description}}</p>
+          <h2>Tarif journalier : {{tarif_jour}}</h2>
+          <p><a class="btn btn-default" href="/reservations/{{nom}}" role="button">Réserver</a></p>
+        </div><!-- /.col-md-4 -->
+
+        
+       {{/each}} 
+      </div><!-- /.row -->
