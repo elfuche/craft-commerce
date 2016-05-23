@@ -26,12 +26,12 @@ router.post('/register', function(req, res){
 	var password2 = req.body.password2;
 
 	//Validation
-	req.checkBody('name', 'Name is required').notEmpty();
-	req.checkBody('email', 'Email is required').notEmpty();
-	req.checkBody('email', 'Email is not valid').isEmail();
-	req.checkBody('username', 'Username is required').notEmpty();
-	req.checkBody('password', 'Password is required').notEmpty();
-	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+	req.checkBody('name', 'Nom requis').notEmpty();
+	req.checkBody('email', 'Email requis').notEmpty();
+	req.checkBody('email', 'Email invalide').isEmail();
+	req.checkBody('username', 'Username requis').notEmpty();
+	req.checkBody('password', 'Mot de passe requis').notEmpty();
+	req.checkBody('password2', 'Mots de passe ne correspondent pas').equals(req.body.password);
 
 
 	var errors = req.validationErrors();
@@ -51,7 +51,7 @@ router.post('/register', function(req, res){
 			if(err) throw err;
 			console.log(user);
 		});
-		req.flash('success_msg', 'You are registered and can login now');
+		req.flash('success_msg', 'Vous êtes enregistré, vous pouvez vous connectez maintenant');
 
 		res.redirect('/users/login');
 	}
@@ -62,7 +62,7 @@ passport.use(new LocalStrategy(
    User.getUserByUsername(username, function(err, user){
    	if(err) throw err;
    	if(!user){
-   		return done(null, false, {message: 'Unknown User'});
+   		return done(null, false, {message: 'Utilisateur inconnu'});
    	}
 
    	User.comparePassword(password, user.password, function(err, isMatch){
@@ -70,7 +70,7 @@ passport.use(new LocalStrategy(
    		if(isMatch){
    			return done(null, user);
    		} else {
-   			return done(null, false, {message: 'Invalid password'});
+   			return done(null, false, {message: 'Mot de passe incorrect'});
    		}
    	});
    });
@@ -111,7 +111,7 @@ router.get('/dashboard', function(req, res){
 router.get('/logout', function(req, res){
 	req.logout();
 
-	req.flash('success_msg', 'You are logged out');
+	req.flash('success_msg', 'Vous êtes déconnecté!');
 
 	res.redirect('/users/login');
 });
