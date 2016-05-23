@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var mongojs = require('mongojs');
-var db = mongojs('productlist',['productlist']);
-var dbr = mongojs('productlist',['materiel']);
+//var db = mongojs('productlist',['productlist']);
+
+var db = mongojs('mongodb://elfuche:mypasswd@ds011903.mlab.com:11903/productlist',['productlist']);
+var dbr = mongojs('mongodb://elfuche:mypasswd@ds011903.mlab.com:11903/productlist',['materiel']);
 
 var helpers = require('handlebars-helpers');
 var math = helpers.math();
