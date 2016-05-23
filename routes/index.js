@@ -10,7 +10,7 @@ var helpers = require('handlebars-helpers');
 var math = helpers.math();
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    req.session.facture = req.session.facture || 0;
+    //req.session.facture = req.session.facture || 0;
   res.render('index');
 });
 
@@ -100,12 +100,7 @@ console.log("resa - cart : "+resa);
             total += (cart[item].qty * cart[item].price);
         }
         req.session.total = displayCart.total = total.toFixed(2);
-        //var globale
-
-        //req.app.locals.amount = req.session.total;
-
-        req.session.facture = parseFloat(req.session.facture)+parseFloat(req.session.total);
-        console.log("cart/ajout - req.session.facture :"+req.session.facture);
+      
         var model =
         {
             cart: displayCart.items,
@@ -136,11 +131,7 @@ router.get('/plus/:name', function(req,res){
             }
         //}
     req.session.total = req.session.total+t;
-    //modifier variable globale 
-    //var globale
-         req.session.facture = req.session.facture+req.session.total;
-        console.log("plus - req.session.facture :"+req.session.facture); 
-    }
+  
 
 req.session.cart = obj;
     res.redirect('/cart');
@@ -164,15 +155,11 @@ router.get('/moins/:name', function(req,res){
             }
         //}
     req.session.total = req.session.total-t;
-    //var globale
-
-         req.session.facture = req.session.facture+req.session.total;
-        console.log("moins - req.session.facture :"+req.session.facture);
+    
     
     }
 
-//if(q){obj.splice(i, 1);}
-//Partie quantité, suppression
+
 console.log('suppression');
 console.log(Object.keys(obj)[i-1]); 
 var ind=Object.keys(obj)[i-1];
@@ -258,14 +245,9 @@ var mod={
        tot:(arr.length*req.body.tarif).toFixed(2)
     };
     console.log(mod);
-    //console.log((req.body.rangee*req.body.tarif).toFixed(2));
    
- 
     req.session.md =mod;
-    //var globale
-
-         //req.session.facture = req.session.facture+req.session.mnt;
-        //req.app.locals.facture =req.session.facture;
+    
         
    res.redirect('/cart');
 });
