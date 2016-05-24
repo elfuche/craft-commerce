@@ -1,25 +1,24 @@
 <div class="container">
+
 <div class="row">
 {{#each res}}
-<div class="col-md-6">
-<div>
 <figure>
 <img src="/{{image}}" alt="{{nom}}" />
 <figcaption style="font-weight:bold;width:60%;">{{description}}</figcaption>
 </figure>
-</div>
-<div>Prix: {{tarif_jour}}euros/jour</div>
-<p>{{capacite}}</p>
+
+<p>Prix: {{tarif_jour}}euros/jour</p>
+<p>Capacité: {{capacite}}</p>
 <p>Age minimum: {{age_min}}</p>
 </div>
-</div>
+
 <div class="row">
 <div class="col-md-6">
 <form method="post" action="reserver">
 <input type="hidden" value="{{_id}}" name="idArticle"/>
 <input type="hidden" value="{{dates_non_comprises}}" name="dates_res" id="res"/>
 <input type="hidden" name="tarif" value="{{tarif_jour}}"/>
-<table>
+<table class="table">
 <tr>
     <td><label>Date Départ</label></td>
     <td><input type="text" id="datepicker" name="date_deb"></td>
@@ -29,11 +28,15 @@
 </tr> 
 </table> 
 
-
 <button class="btn btn-primary id="valid">Valider</a>
 </form>
 </div>
+<div class="col-md-offset-1 col-md-3">
+<span><strong>Veuillez choisir un intervalle de dates disponibles consécutives</strong></span>
+</div>
+
 </div>
 {{/each}}
+
 
 </div>

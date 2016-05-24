@@ -3,8 +3,8 @@ var router = express.Router();
 var mongojs = require('mongojs');
 //var db = mongojs('productlist',['productlist']);
 
-var db = mongojs('mongodb://elfuche:mypasswd@ds011903.mlab.com:11903/productlist',['productlist']);
-var dbr = mongojs('mongodb://elfuche:mypasswd@ds011903.mlab.com:11903/productlist',['materiel']);
+var db = mongojs('mongodb://elfuche:pwd@ds011903.mlab.com:11903/productlist',['productlist']);
+var dbr = mongojs('mongodb://elfuche:pwd@ds011903.mlab.com:11903/productlist',['materiel']);
 
 var helpers = require('handlebars-helpers');
 var math = helpers.math();
@@ -129,13 +129,14 @@ router.get('/plus/:name', function(req,res){
                 break;
                 var t =value["price"];
             }
-        //}
+        }
     req.session.total = req.session.total+t;
   
 
 req.session.cart = obj;
     res.redirect('/cart');
 });
+
 router.get('/moins/:name', function(req,res){
    console.log(req.params.name);
     var nom = req.params.name;
