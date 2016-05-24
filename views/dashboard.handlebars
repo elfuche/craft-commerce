@@ -13,7 +13,7 @@
 <div class="row">
 <div class="col-md-3 col-offset-md-1">
 <h3>Bienvenue {{user.username}}</h3>
-<h3>Montant à payer : {{total}}</h3>
+<h3>Montant à payer : {{montant}}</h3>
 </div>
 
 <div class="col-offset-md-1 col-md-7" style="border-left: 1px solid blue;">
@@ -60,7 +60,7 @@
 <td></td>
 <td></td>
 <td></td>
-<td>Total:{{total}}</td>
+<td>Total:{{cart.total}}</td>
 </tr>
 </tbody>
 </table>
@@ -74,7 +74,33 @@
 <!-- Partie bouton paiment, confirmation, archivage -->
 <div class="row">
 <div class="col-offset-md-4 col-md-4">
-<button class="paypal_btn">Payer</button>
+<form method="post" action="payer">
+<input type="hidden" value="{{user.username}}" name="username"/>
+<input type="hidden" value="{{resa.intervalle}}" name="intervalle"/>
+<input type="hidden" value="{{cart}}" name="cart"/> 
+<input type="hidden" value="{{resa.date_deb}}" name="debut"/>
+<input type="hidden" value="{{resa.date_fin}}" name="fin"/>
+<input type="hidden" value="{{montant}}" name="montant"/>
+<input type="hidden" value="{{resa.idArticle}}" name="id"/>
+<button class="paypal_btn" data-toggle="modal" data-target=".bs-example-modal-lg">PayPal</button>
+</form>
 </div>
 </div>
+
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+     <h2><span style="color:red">Payment effectué</span></h2>
+     <p style="color:green">Merci pour votre fidélité {{user.username}}</p>
+     <div>
+     <form action="logout">
+     <button class="btn btn-success">Sortir</button>
+     </form>
+     </div>
+    </div>
+  </div>
 </div>
+
+
+</div> <!-- fin container -->

@@ -3,9 +3,10 @@ var router = express.Router();
 var flash = require('connect-flash');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-
+var mongojs = require('mongojs');
 var User = require('../models/user');
-
+var dbc = mongojs('mongodb://elfuche:Travail#2016@ds011903.mlab.com:11903/productlist',['commandes']);
+var dbr = mongojs('mongodb://elfuche:Travail#2016@ds011903.mlab.com:11903/productlist',['materiel']);
 /* GET users listing. */
 
 router.get('/login', function(req, res, next) {
@@ -103,7 +104,7 @@ router.get('/dashboard', function(req, res){
 	console.log("somme : "+somme);
 	var panier = req.session.cart;
 	var booking = req.session.md;
-	res.render('dashboard', {total:somme, cart:panier, resa:booking});
+	res.render('dashboard', {montant:somme, cart:panier, resa:booking});
 });
 
 
@@ -116,6 +117,35 @@ router.get('/logout', function(req, res){
 	res.redirect('/users/login');
 });
 
+//Archivage des ventes et des réservations
+router.post('/payer', function(req, res){
+	var username = req.body.username;
+	console.log(username);
+	var intervalle = req.body.intervalle;
+	console.log(intervalle);
+	var range = intervalle.split(',');
+	console.log(range);
+	var cart = req.body.cart;
+	console.log("payer- cart :" +cart);
+	var debut = req.body.debut;
+	var fin = req.body.fin;
+	var montant = req.body.montant;
+    var id = req.body.id;
+    console.log(id);
+	 //Ajouter proprement élément par élément(mise à jour des dates non disponibles)
+  for(var i=0; i<intervalle.length-1;i++){ 
+  dbr.materiel.update({ _id: mongojs.ObjectId(id) },{ $addToSet: {dates_non_comprises: range[i]}}, function(err,doc){
+    if(err){console.log('errrrrrrrr');}
+  });
+  } //fin boucle for
+
+  //Archivage, Historisation
+  dbc.commandes.insert({nom:username,date_debut:debut, date_fin:fin, panier:JSON.parse(cart), montant:montant, date: new Date()}, function(doc,err){
+    if(err){ console.log('erreur archivage');}
+  });
+  
+
+});
 
 
 module.exports = router;

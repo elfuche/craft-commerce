@@ -23,7 +23,7 @@ var flash = require('connect-flash');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var ent = require('ent');
-mongoose.connect('mongodb://elfuche:pwd@ds011903.mlab.com:11903/productlist');
+mongoose.connect('mongodb://elfuche:Travail#2016@ds011903.mlab.com:11903/productlist');
 var dbm = mongoose.connection;
 
 
@@ -41,7 +41,7 @@ app.use(session({
      secret: 'secret secret',
      //store: new MongoStore({db:dbcart}),
      store: new MongoStore({
-    url: 'mongodb://elfuche:pwd@ds011903.mlab.com:11903/productlist',
+    url: 'mongodb://elfuche:Travail#2016@ds011903.mlab.com:11903/productlist',
     collection:'cartSession'
   }),
      resave: false,
