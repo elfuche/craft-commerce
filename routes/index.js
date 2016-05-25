@@ -258,4 +258,11 @@ router.get('/reservations/cart',function (req, res) {
 res.render('cart');
 });
 
+
+router.get('/annuler', function(req,res){
+    req.session.md = null;
+    req.session.mnt = 0;
+    res.redirect('/cart');
+});
+
 module.exports = router;
