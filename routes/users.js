@@ -140,8 +140,9 @@ router.post('/payer', function(req, res){
   } //fin boucle for
 
   //Archivage, Historisation
-  dbc.commandes.insert({nom:username,date_debut:debut, date_fin:fin, panier:JSON.parse(cart), montant:montant, date: new Date()}, function(doc,err){
-    if(err){ console.log('erreur archivage');}
+  dbc.commandes.insert({nom:username,date_debut:debut, date_fin:fin, panier:req.session.cart, reservation:req.session.md, 
+  	montant:montant, date: new Date()}, function(doc,err){
+    //if(err){ console.log('erreur archivage');}
   });
   
 
