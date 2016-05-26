@@ -14,6 +14,14 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+router.get('/contact', function(req, res){
+    res.render('contact');
+});
+
+router.get('/about', function(req, res){
+    res.render('about');
+});
+
 router.get('/articles', function(req, res) {
     
 	db.productlist.find(function(err, docs){		

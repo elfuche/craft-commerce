@@ -34,7 +34,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout:'layout'}));
 app.set('view engine','handlebars');
 
-
+//icone
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
 
 app.use(session({
