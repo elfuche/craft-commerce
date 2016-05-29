@@ -3,7 +3,7 @@
 Application web e-commerce autour du thème du surf dans la quelle on peut remplir son cadi et le modifier, réserver une prestation ainsi que se connecter et s'enregister en tant qu'utilisateur.
 
 ##Eléments requis
-- [NodeJs](nodejs.org)
+- [Node.js](https://nodejs.org/)
 
 ##Installation
  ```sh
@@ -15,4 +15,4 @@ puis
 ```sh
 $ node ./bin/www
 ```
-Visiter [http://localhost:3000](localhost:3000)
+Visiter [https://localhost:3443](localhost:3443)
