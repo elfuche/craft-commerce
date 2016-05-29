@@ -115,6 +115,7 @@ router.get('/logout', function(req, res){
 	req.flash('success_msg', 'Vous êtes déconnecté!');
 
 	res.redirect('/users/login');
+    
 });
 
 //Archivage des ventes et des réservations

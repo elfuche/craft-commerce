@@ -29,6 +29,16 @@ var dbm = mongoose.connection;
 
 var app = express();
 
+//Sécurisation du traffic
+app.all('*', function(req, res, next){
+    console.log('req start : ', req.secure,req.hostname,req.url,app.get('port'));
+    if(req.secure){
+      return next();  
+    }
+res.redirect('https://'+req.hostname+':'+app.get('secPort')+req.url);    
+});
+
+
 //View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout:'layout'}));
