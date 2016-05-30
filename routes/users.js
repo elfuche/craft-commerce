@@ -7,7 +7,7 @@ var mongojs = require('mongojs');
 var User = require('../models/user');
 var dbc = mongojs('mongodb://elfuche:Travail#2016@ds011903.mlab.com:11903/productlist',['commandes']);
 var dbr = mongojs('mongodb://elfuche:Travail#2016@ds011903.mlab.com:11903/productlist',['materiel']);
-/* GET users listing. */
+
 
 router.get('/login', function(req, res, next) {
   res.render('login');
@@ -18,7 +18,7 @@ router.get('/login', function(req, res, next) {
 router.get('/register', function(req, res){
 	res.render('register');
 });
-// Regsiter User
+// Register User
 router.post('/register', function(req, res){
 	var name = req.body.name;
 	var email = req.body.email;
@@ -143,7 +143,6 @@ router.post('/payer', function(req, res){
   //Archivage, Historisation
   dbc.commandes.insert({nom:username,date_debut:debut, date_fin:fin, panier:req.session.cart, reservation:req.session.md, 
   	montant:montant, date: new Date()}, function(doc,err){
-    //if(err){ console.log('erreur archivage');}
   });
   
 

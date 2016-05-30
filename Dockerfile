@@ -1,4 +1,4 @@
-﻿FROM ubuntu:14.04
+FROM ubuntu:14.04
 MAINTAINER yasadi <yassine.aouadi90@gmail.com>
 
 RUN apt-get update -y

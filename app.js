@@ -16,8 +16,6 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
-//mongoose.connect('mongodb://localhost/productApp');
-//var db = mongoose.connection;
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var passport = require('passport');

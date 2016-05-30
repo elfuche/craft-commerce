@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongojs = require('mongojs');
-//var db = mongojs('productlist',['productlist']);
+
 
 var db = mongojs('mongodb://elfuche:Travail#2016@ds011903.mlab.com:11903/productlist',['productlist']);
 var dbr = mongojs('mongodb://elfuche:Travail#2016@ds011903.mlab.com:11903/productlist',['materiel']);
@@ -10,7 +10,6 @@ var helpers = require('handlebars-helpers');
 var math = helpers.math();
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    //req.session.facture = req.session.facture || 0;
   res.render('index');
 });
 
@@ -28,8 +27,6 @@ router.get('/articles', function(req, res) {
 	res.render('articles', {articles:docs});
 });  
 });
-
-
 
 router.get('/articles/:title', function(req, res){
 	var nom = req.params.title;
@@ -50,11 +47,9 @@ router.get('/cart/:id', function(req,res){
 //Partie cadi
 router.post('/articles/cart', function (req, res) {
 
-        //Load (or initialize) the cart
+        //Charger (ou initialiser le cadi)
         req.session.cart = req.session.cart || {};
         var cart = req.session.cart;
-
-        //Read the incoming product data
         var id = req.body.id;
 
         //Locate the product to be added
@@ -65,7 +60,7 @@ router.post('/articles/cart', function (req, res) {
                 return;
             }
 
-            //Add or increase the product quantity in the shopping cart.
+            //Ajouter ou augmenter la quantité du produit dans le cadi
             if (cart[id]) {
                 cart[id].qty++;
             }
@@ -77,7 +72,7 @@ router.post('/articles/cart', function (req, res) {
                 };
             }
 
-            //Display the cart for the user
+            //Afficher le cadi pour l'utilisateur
             res.redirect('/cart');
 
         });
@@ -91,18 +86,17 @@ console.log("le montant :"+mnt);
 var fact =req.session.facture = req.session.facture || req.session.facture;
 console.log("la facture :"+fact);
 console.log("resa - cart : "+resa);
-        //Retrieve the shopping cart from memory
+        //Extraction du cadi
         var cart = req.session.cart,
             displayCart = {items: [], total: 0},
             total = 0;
 
         if (!cart) {
-            //res.render('result', {result: 'Your cart is empty!'});
             res.render('cart', {message:'panier vide', resa:resa, mnt:mnt+"", fact:fact});
             return;
         }
 
-        //Ready the products for display
+        //Traitement affichage des produits
         for (var item in cart) {
             displayCart.items.push(cart[item]);
             total += (cart[item].qty * cart[item].price);
@@ -120,7 +114,9 @@ console.log("resa - cart : "+resa);
     });
 
 
-//Triatement modification panier
+//Traitement modification panier
+
+//Augmentation de la quantité et recalcul du total
 router.get('/plus/:name', function(req,res){
     console.log(req.params.name);
     var nom = req.params.name;
@@ -139,12 +135,12 @@ router.get('/plus/:name', function(req,res){
             }
         }
     req.session.total = req.session.total+t;
-  
-
 req.session.cart = obj;
     res.redirect('/cart');
 });
 
+
+//Diminution de la quantité et recalcul du total
 router.get('/moins/:name', function(req,res){
    console.log(req.params.name);
     var nom = req.params.name;
@@ -209,13 +205,13 @@ router.post('/reservations/reserver', function(req, res){
 //Calcul dates dans intervalle
 var d1=req.body.date_deb;
 var d2=req.body.date_fin;
-//Calcul dates dans l'intervalle choisi
+//Métode d'addition d'un jour à une date
 Date.prototype.addDays = function(days) {
 var dat = new Date(this.valueOf());
 dat.setDate(dat.getDate() + days);
 return dat;
 };
-//Traitement pour calculer dates dans un intervalle
+//Traitement pour calculer l'ensemble des dates dans un intervalle
 function getDates(startDate, stopDate) {
 var dateArray = [];
 var currentDate = startDate;
@@ -242,8 +238,8 @@ console.log(arr);
 
     req.session.mnt=(arr.length*req.body.tarif).toFixed(2);
     req.session.facture = parseFloat(req.session.facture) + parseFloat(req.session.mnt);
-    //var faturra = req.session.facture;
 
+//Traitement affichage réservation
 var mod={
        idArticle:req.body.idArticle,
        date_deb:req.body.date_deb,
@@ -258,7 +254,7 @@ var mod={
    
     req.session.md =mod;
     
-        
+   //Redirection vers l'affichage du cadi     
    res.redirect('/cart');
 });
 
