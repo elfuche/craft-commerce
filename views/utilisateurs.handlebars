@@ -1,0 +1,25 @@
+<h2 class="sub-header">Utilisateurs</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Pseudo</th>
+                  <th>Adresse mail</th>
+                  <th>Mot de passe</th>
+                </tr>
+              </thead>
+              <tbody>
+              {{#each users}}
+                <tr>
+                <td>{{name}}</td>
+                <td>{{email}}</td>
+                <td>{{username}}</td>
+                <td>{{password}}</td>
+                </tr>
+
+
+              {{/each}}
+              </tbody>
+            </table>
+          </div>

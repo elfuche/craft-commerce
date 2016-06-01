@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var admin = require('./routes/admin');
 var mongojs = require('mongojs');
 
 var mongo = require('mongodb');
@@ -24,8 +25,10 @@ var ent = require('ent');
 mongoose.connect('mongodb://elfuche:Travail#2016@ds011903.mlab.com:11903/productlist');
 var dbm = mongoose.connection;
 
-
 var app = express();
+
+
+
 
 //Sécurisation du traffic
 app.all('*', function(req, res, next){
@@ -39,7 +42,7 @@ res.redirect('https://'+req.hostname+':'+app.get('secPort')+req.url);
 
 //View Engine
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs({defaultLayout:'layout'}));
+app.engine('handlebars', exphbs({defaultLayout:'layout',helpers:{toJSON : function(object){return JSON.stringify(object);}} }));
 app.set('view engine','handlebars');
 
 //icone
@@ -109,6 +112,7 @@ app.use(function(req, res, next){
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

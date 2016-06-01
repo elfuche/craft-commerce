@@ -1,0 +1,27 @@
+<h2 class="sub-header">Réservation</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Description</th>
+                  <th>Tarif jour</th>
+                  <th>Age minimum requis</th>
+                  <th>Capacite</th>
+                </tr>
+              </thead>
+              <tbody>
+              {{#each res}}
+                <tr>
+                <td>{{nom}}</td>
+                <td>{{description}}</td>
+                <td>{{tarif_jour}}</td>
+                <td>{{age_min}}</td>
+                <td>{{capacite}}</td>
+                </tr>
+
+
+              {{/each}}
+              </tbody>
+            </table>
+          </div>

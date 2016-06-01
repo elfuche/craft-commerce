@@ -16,3 +16,7 @@ puis
 $ node ./bin/www
 ```
 Visiter [https://localhost:3443](localhost:3443)
+
+##Administration
+
+Visiter [https://localhost:3443/admin](localhost:3443/admin) 

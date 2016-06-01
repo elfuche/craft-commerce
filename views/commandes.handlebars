@@ -1,0 +1,27 @@
+<h2 class="sub-header">Commandes</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Client</th>
+                  <th>Achats</th>
+                  <th>Dates réservation</th>
+                  <th>Montant</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+              {{#each commandes}}
+                <tr>
+                <td>{{nom}}</td>
+                <td>{{toJSON panier}}</td>
+                <td>{{reservation.date_deb }} - {{reservation.date_deb }}</td>
+                <td>{{montant}}</td>
+                <td>{{date}}</td>
+                </tr>
+
+
+              {{/each}}
+              </tbody>
+            </table>
+          </div>

@@ -1,0 +1,24 @@
+<h2 class="sub-header">Produits</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Description</th>
+                  <th>Prix</th>
+                </tr>
+              </thead>
+              <tbody>
+              {{#each produits}}
+                <tr>
+                <td>{{title}}</td>
+                <td>{{description}}</td>
+                <td>{{prix}}</td>
+                </tr>
+              {{/each}}
+              </tbody>
+            </table>
+          </div>
+<div>
+<button class="btn btn-info">ajouter produit</button>
+</div>          
